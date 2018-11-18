@@ -7,8 +7,10 @@ import reducers from './reducers'
 import { Router, Switch, Route } from 'react-router-dom';
 import history from './history';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import LoginForm from './container/LogIn/LoginForm';
+import App from './App';
 
 const middleware = [thunk];
 const createStoreWithMddleware = applyMiddleware(...middleware)(createStore);
@@ -18,7 +20,7 @@ ReactDOM.render(
     <Provider store={store}>
        <Router history={history}>
             <Switch>
-                <Route exact path="/" component={App} />
+                <Route exact path="/" component={LoginForm} />
                 <Route path="/ab" component={App}>
                     <Route path="/app" component={App}/>
                 </Route>
