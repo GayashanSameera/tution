@@ -1,9 +1,10 @@
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { Button,Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
 import { Link } from 'react-router-dom'
 import React, { Component } from 'react';
-
+import {submitLogin} from '../../reducers/authreducer';
 import { Loading } from '../../components/Loading';
 import AuthContainer from './AuthContainer';
 import history from '../../history';
@@ -20,7 +21,7 @@ class LoginForm extends Component {
   }
 
   async handleValidSubmit(event, values) {
-    await this.props.userLogin(values.email, values.password);
+    await this.props.submitLogin(values.email, values.password);
   }
 
   toggle() {
@@ -56,5 +57,16 @@ class LoginForm extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  };
+}
 
-export default LoginForm;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ submitLogin }, dispatch);
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginForm);
