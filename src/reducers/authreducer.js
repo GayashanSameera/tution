@@ -1,4 +1,5 @@
 import history from '../history';
+import {authAxios} from '../axios';
 
 export const TRY_TO_SUBMIT = 'TRY_TO_SUBMIT';
 
@@ -13,9 +14,9 @@ export default (state = INIT_STATE, action) => {
 
 export const submitLogin = (email, password) => async (dispatch) => {
     try {
-        console.log("email=======>>>>>>>>>",email)
       dispatch({ type: TRY_TO_SUBMIT, payload: true });
-    //   const res = await authAxios.post(`/auth/local`, { email: email, password: password });
+      const res = await authAxios.post(`/`, { email: email, password: password });
+      console.log("res=======>>>>>>>>>",res)
     //   let token = res.data.token;
     //   await dispatch(setToken(token));
     //   await dispatch(getUser());
