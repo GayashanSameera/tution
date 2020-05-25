@@ -9,8 +9,9 @@ import history from './history';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import LoginForm from './container/LogIn/LoginForm';
+// import LoginForm from './container/LogIn/LoginForm';
 import App from './App';
+import LoginForm from './loginForm';
 
 const middleware = [thunk];
 const createStoreWithMddleware = applyMiddleware(...middleware)(createStore);
@@ -24,6 +25,7 @@ ReactDOM.render(
                 <Route path="/ab" component={App}>
                     <Route path="/app" component={App}/>
                 </Route>
+                <Route path="/test" component={LoginForm} />
             </Switch>
         </Router>
     </Provider>, 
